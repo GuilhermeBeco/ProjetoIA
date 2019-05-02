@@ -1,0 +1,32 @@
+Catch state:
+construtor-> identico ao Eigh puzzle 8
+if (matrix[i][j]==Proprities.CATCH){
+	guardar..
+}
+Segundo construtor que recebe por parametro um i e um j para fazer o if do construtor anterior
+CanMoves-> identico ao puzzle 8 com uma dif:
+Verificar os bounds da janela tendo em conta o guardar do construtor anterior
+if (matrix [line][nextCol]!=)proprities.WALL)
+Moves:
+	MoveUp-> 
+	Matrix[line][col]=Proprities.Empty
+	Matrix[nextLine][NextCol]=Proprities.Empty
+	Matrix[nextLine][NExtCol]=Proprities.Catch
+Heuristic
+	distancia=abs(linhaCatch-linhaGoal)+abs(colCatch-colGoal)
+SetCatch(lineS,cS){
+	MAtrix[line][col]=Proprities.empty
+	line=lineS
+	col=cS
+	matrix[line][col]=Proprities.catch
+Getnumbox
+agora return 0
+getstrps
+agora return 0
+
+catchProblemSearch
+	Declarar na classe 2 atribuitos o incialStates e o goalPosition
+	Criar Lista de ações possiveis
+	executeActions = eight puzzle's executeActions
+	isGoal
+		recebendo apenas o estado, get line e get col
