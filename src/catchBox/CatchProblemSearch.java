@@ -38,7 +38,7 @@ public class CatchProblemSearch<S extends CatchState> extends Problem<S> {
     }
 
     public boolean isGoal(S state) {
-      int line=state.getLine();
+      int line=state.getCatchLine();
       int col=state.getCatchCol();
       if(line==goalPos.getLine()&&col==goalPos.getColumn()){
           return true;
@@ -47,5 +47,9 @@ public class CatchProblemSearch<S extends CatchState> extends Problem<S> {
     }
     public double computePathCost(List<Action> path) {
         return path.size();
+    }
+
+    public Cell getGoalPos() {
+        return goalPos;
     }
 }

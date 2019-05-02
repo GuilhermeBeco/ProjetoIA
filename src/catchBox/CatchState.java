@@ -8,15 +8,48 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import static java.lang.Math.abs;
+
 public class CatchState extends State implements Cloneable {
     private int catchLine;
     private int catchCol;
-
+    private  int lineBlank;
+    private  int colBlank;
     protected int[][] matrix;
+    private int goalLine;
+    private int goalCol;
+
 
     public CatchState(int[][] matrix) {
-        //TODO
-        throw new NotImplementedException();
+        this.matrix = new int[matrix.length][matrix.length]; //é uma matriz sempre quadrada??
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix.length; j++) {
+                this.matrix[i][j]=matrix[i][j];
+                if(this.matrix[i][j]==0){
+                    lineBlank=i;
+                    colBlank=j;
+                }
+            }
+
+        }
+    }
+    public CatchState(int[][] matrix,int x) {
+        this.matrix = new int[matrix.length][matrix.length]; //é uma matriz sempre quadrada??
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix.length; j++) {
+                this.matrix[i][j]=matrix[i][j];
+                if(this.matrix[i][j]==0){
+                    lineBlank=i;
+                    colBlank=j;
+                }
+                if(this.matrix[i][j]==Properties.CATCH)
+                {
+                    catchLine=i;
+                    catchCol=j;
+                }
+            }
+
+        }
     }
 
     public void executeAction(Action action) {
@@ -28,53 +61,80 @@ public class CatchState extends State implements Cloneable {
     }
 
     public boolean canMoveUp() {
-        //TODO
-        throw new NotImplementedException();
+        if(catchLine-1>=0) {
+            if (matrix[catchLine - 1][catchCol] != Properties.WALL||matrix[catchLine - 1][catchCol] != Properties.DOOR) {
+                return true;
+            }
+        }
+        return false;
+        //é isto??
     }
 
     public boolean canMoveRight() {
-        //TODO
-        throw new NotImplementedException();
+        if(catchCol+1<=matrix.length) {
+            if (matrix[catchLine][catchCol + 1] != Properties.WALL||matrix[catchLine][catchCol + 1] != Properties.DOOR) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public boolean canMoveDown() {
-        //TODO
-        throw new NotImplementedException();
+        if(catchLine+1<=matrix.length) {
+            if (matrix[catchLine +1][catchCol] != Properties.WALL||matrix[catchLine +1][catchCol] != Properties.DOOR) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public boolean canMoveLeft() {
-        //TODO
-        throw new NotImplementedException();
+        if(catchCol-1>=0) {
+            if (matrix[catchLine][catchCol -1] != Properties.WALL||matrix[catchLine][catchCol -1] != Properties.DOOR) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public void moveUp() {
-        //TODO
-        throw new NotImplementedException();
+       matrix[catchLine][catchCol]=Properties.EMPTY;
+       matrix[catchLine--][catchCol]=Properties.CATCH;
+       catchLine--;//está aqui bem e está certo?
     }
 
     public void moveRight() {
-        //TODO
-        throw new NotImplementedException();
+        matrix[catchLine][catchCol]=Properties.EMPTY;
+        matrix[catchLine][catchCol++]=Properties.CATCH;
+        catchCol++;
     }
 
     public void moveDown() {
-        //TODO
-        throw new NotImplementedException();
+        matrix[catchLine][catchCol]=Properties.EMPTY;
+        matrix[catchLine++][catchCol]=Properties.CATCH;
+        catchLine++;
     }
 
     public void moveLeft() {
-        //TODO
-        throw new NotImplementedException();
+        matrix[catchLine][catchCol]=Properties.EMPTY;
+        matrix[catchLine][catchCol--]=Properties.CATCH;
+        catchCol--;
     }
 
     public int getNumBox() {
-        //TODO
-        throw new NotImplementedException();
+        int count=0;
+        for (int i = 0; i <matrix.length ; i++) {
+            for (int j = 0; j <matrix[0].length; j++) {
+                if(matrix[i][j]==Properties.BOX)
+                    count++;
+            }
+        }
+        return count;
     }
 
     public void setCellCatch(int line, int column) {
-        //TODO
-        throw new NotImplementedException();
+        catchCol=column;
+        catchLine=line;
     }
 
     public int[][] getMatrix() {
@@ -82,17 +142,25 @@ public class CatchState extends State implements Cloneable {
     }
 
     public void setGoal(int line, int column) {
-        //TODO
-        throw new NotImplementedException();
+       goalLine=line;
+       goalCol=column;
+    }
+
+    public int getGoalLine() {
+        return goalLine;
+    }
+
+    public int getGoalCol() {
+        return goalCol;
     }
 
     public int getSteps() {
-        //TODO
+        //TODO//idk
         throw new NotImplementedException();
     }
 
     public int getSize() {
-        return matrix.length;
+        return matrix.length;//???
     }
 
     public Color getCellColor(int line, int column) {
@@ -145,8 +213,7 @@ public class CatchState extends State implements Cloneable {
 
     @Override
     public CatchState clone() {
-        //TODO
-        throw new NotImplementedException();
+        return new CatchState(matrix);
     }
 
     //Listeners
@@ -167,11 +234,18 @@ public class CatchState extends State implements Cloneable {
             listener.environmentUpdated();
         }
     }
-    public int getLine(){
+    public int getCatchLine(){
         return catchLine;
     }
 
     public int getCatchCol() {
         return catchCol;
+    }
+    public double distancia(CatchState state){
+        return abs(state.getCatchLine()-state.getGoalLine())+abs(state.getCatchCol()-state.getGoalCol());
+    }
+    //qual a aproach???
+    public double distancia(Cell goal) {
+        return abs(this.getCatchLine() - goal.getLine()) + abs(this.getCatchCol() - goal.getColumn());
     }
 }

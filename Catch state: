@@ -6,7 +6,7 @@ if (matrix[i][j]==Proprities.CATCH){
 Segundo construtor que recebe por parametro um i e um j para fazer o if do construtor anterior
 CanMoves-> identico ao puzzle 8 com uma dif:
 Verificar os bounds da janela tendo em conta o guardar do construtor anterior
-if (matrix [line][nextCol]!=)proprities.WALL)
+if (matrix [line][nextCol]!=proprities.WALL)
 Moves:
 	MoveUp-> 
 	Matrix[line][col]=Proprities.Empty
@@ -30,3 +30,7 @@ catchProblemSearch
 	executeActions = eight puzzle's executeActions
 	isGoal
 		recebendo apenas o estado, get line e get col
+-----------------------------------------------------------
+update:
+verificar com a stora o catchproblemserch e o catchstate assim como a heuristica
+

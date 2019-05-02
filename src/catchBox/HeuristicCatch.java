@@ -7,13 +7,12 @@ public class HeuristicCatch extends Heuristic<CatchProblemSearch, CatchState> {
 
     @Override
     public double compute(CatchState state) {
-        //TODO
-        throw new NotImplementedException();
+        return state.distancia(problem.getGoalPos());
+        //qual a aproach???
     }
 
     @Override
     public String toString() {
-        //TODO
-        throw new NotImplementedException();
+        return "Distancia entre o carrigo e o objetivo";
     }
 }
