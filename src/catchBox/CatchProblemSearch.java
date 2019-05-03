@@ -2,14 +2,14 @@ package catchBox;
 
 import agentSearch.Action;
 import agentSearch.Problem;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
+//import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.util.LinkedList;
 import java.util.List;
 
 public class CatchProblemSearch<S extends CatchState> extends Problem<S> {
     private Cell goalPos;
-    private S initial;
+
     private List<Action> actions;
     public CatchProblemSearch(S initialCatchState, Cell goalPosition) {
         super(initialCatchState);

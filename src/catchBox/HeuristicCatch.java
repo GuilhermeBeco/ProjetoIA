@@ -1,13 +1,13 @@
 package catchBox;
 
 import agentSearch.Heuristic;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
+//import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 public class HeuristicCatch extends Heuristic<CatchProblemSearch, CatchState> {
 
     @Override
     public double compute(CatchState state) {
-        return state.distancia(problem.getGoalPos());
+        return state.distancia();
         //qual a aproach???
     }
 

@@ -1,7 +1,8 @@
 package catchBox;
 
 import ga.IntVectorIndividual;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
+
+import java.util.LinkedList;
 
 public class CatchIndividual extends IntVectorIndividual<CatchProblemForGA, CatchIndividual> {
 
@@ -15,8 +16,28 @@ public class CatchIndividual extends IntVectorIndividual<CatchProblemForGA, Catc
 
     @Override
     public double computeFitness() {
-        //TODO
-        throw new NotImplementedException();
+        LinkedList<Pair> pares= problem.getPairs();
+        LinkedList<Cell> boxes=problem.getCellsBoxes();
+        Cell catchCell = problem.getCellCatch();
+        Cell door=problem.getDoor();
+        double fitness=0;
+
+        for (int i = 0; i < pares.size(); i++) {
+            Pair par=pares.get(i);
+
+            if(par.getCell1()==catchCell&&par.getCell2()==boxes.get(genome[0])){ ///de onde vei a ordem das caixa, é do genome???
+                fitness=fitness+par.getValue();
+            }
+
+        }
+
+        for (int i = 0; i <genome.length; i++) {
+            for (int j = 0; j <pares.size(); j++) {
+                Pair par=pares.get(i);
+                if(par.getCell1(genome[i])==boxes)
+            }
+
+        }
     }
 
     public int[] getGenome() {

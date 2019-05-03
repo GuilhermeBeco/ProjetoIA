@@ -1,19 +1,42 @@
 package ga;
 
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
+//import sun.reflect.generics.reflectiveObjects.NotImplementedException;
+
+import com.sun.security.auth.UnixNumericGroupPrincipal;
+
+import java.util.Random;
 
 public abstract class IntVectorIndividual<P extends Problem, I extends IntVectorIndividual> extends Individual<P, I> {
     //TODO this class might require the definition of additional methods and/or attributes
 
     protected int[] genome;
-
     public IntVectorIndividual(P problem, int size) {
         super(problem);
         genome = new int[size];
 
-        //TODO
-        throw new NotImplementedException();
+        for (int i = 0; i < size; i++) {
+            if(i==0){
+                genome[i]=new Random().nextInt(10)+1;
+            }else {
+                int num=0;
+                do{
+                    num=new Random().nextInt(10)+1;
+                }while(check(i,num));
+                genome[i]=num;
+
+            }
+        }
+
       }
+
+    private boolean check(int i,int num) {
+        for(int j=0;j<i;j++){
+            if(genome[j]==num){
+                return true;
+            }
+        }
+        return false;
+    }
 
     public IntVectorIndividual(IntVectorIndividual<P, I> original) {
         super(original);
