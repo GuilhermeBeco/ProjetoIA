@@ -16,11 +16,11 @@ public abstract class IntVectorIndividual<P extends Problem, I extends IntVector
 
         for (int i = 0; i < size; i++) {
             if(i==0){
-                genome[i]=new Random().nextInt(10)+1;
+                genome[i]=GeneticAlgorithm.random.nextInt(size)+1;
             }else {
-                int num=0;
+                int num;
                 do{
-                    num=new Random().nextInt(10)+1;
+                    num=GeneticAlgorithm.random.nextInt(size)+1;
                 }while(check(i,num));
                 genome[i]=num;
 

@@ -16,28 +16,45 @@ public class CatchIndividual extends IntVectorIndividual<CatchProblemForGA, Catc
 
     @Override
     public double computeFitness() {
-        LinkedList<Pair> pares= problem.getPairs();
-        LinkedList<Cell> boxes=problem.getCellsBoxes();
+        LinkedList<Cell> boxes = problem.getCellsBoxes();
         Cell catchCell = problem.getCellCatch();
-        Cell door=problem.getDoor();
-        double fitness=0;
+        Cell door = problem.getDoor();
+        fitness = computeFitnessAux(catchCell,boxes.get(genome[0]-1));
+
+
+
+        for (int i = 0; i <genome.length - 1; i++) {
+            fitness+=computeFitnessAux(boxes.get(genome[i]-1),boxes.get(genome[i+1]-1));
+         /*   for (int j = 0; j < pares.size(); j++) {
+                Pair par = pares.get(j);
+                if (par.getCell1().equals(boxes.get(genome[i]-1)) && par.getCell2().equals(boxes.get(genome[i + 1]-1)) || par.getCell2().equals(boxes.get(genome[i]-1)) && par.getCell1().equals(boxes.get(genome[i + 1]-1))) { ///de onde vei a ordem das caixa, é do genome???
+                    fitness += par.getValue();
+                    break;
+                }
+            }*/
+        }
+        fitness+=computeFitnessAux(boxes.get(genome[genome.length-1]-1),door);
+      /*  for (int j = 0; j < pares.size(); j++) {
+            Pair par = pares.get(j);
+            if (par.getCell1().equals(boxes.get(genome[genome.length-1]-1)) && par.getCell2().equals(door) || par.getCell2().equals(boxes.get(genome[genome.length-1]-1)) && par.getCell1().equals(door)) { ///de onde vei a ordem das caixa, é do genome???
+                fitness += par.getValue();
+            }
+        }*/
+
+        return fitness;
+    }
+    public double computeFitnessAux(Cell cell1,Cell cell2){
+        LinkedList<Pair> pares = problem.getPairs();
+        double ret=0;
 
         for (int i = 0; i < pares.size(); i++) {
-            Pair par=pares.get(i);
-
-            if(par.getCell1()==catchCell&&par.getCell2()==boxes.get(genome[0])){ ///de onde vei a ordem das caixa, é do genome???
-                fitness=fitness+par.getValue();
+            Pair par = pares.get(i);
+            if (par.getCell1().equals(cell1) && par.getCell2().equals(cell2) || par.getCell2().equals(cell1) && par.getCell1().equals(cell2)) { ///de onde vei a ordem das caixa, é do genome???
+                ret =  par.getValue();
+                break;
             }
-
         }
-
-        for (int i = 0; i <genome.length; i++) {
-            for (int j = 0; j <pares.size(); j++) {
-                Pair par=pares.get(i);
-                if(par.getCell1(genome[i])==boxes)
-            }
-
-        }
+        return ret;
     }
 
     public int[] getGenome() {
