@@ -1,5 +1,6 @@
 package ga.geneticOperators;
 
+import ga.GeneticAlgorithm;
 import ga.IntVectorIndividual;
 import ga.Problem;
 
@@ -14,8 +15,20 @@ public class Recombination2<I extends IntVectorIndividual, P extends Problem<I>>
 
     @Override
     public void recombine(I ind1, I ind2) {
-        //TODO
-        throw new UnsupportedOperationException();
+        int [] child1=new int[ind1.getNumGenes()/2];
+        int [] child2=new int[ind2.getNumGenes()/2];
+        int crossPoint= GeneticAlgorithm.random.nextInt(ind1.getNumGenes()/2);
+        for (int i = 0; i <crossPoint; i++) {
+            child1[i]=ind1.getGene(i);
+            child2[i]=ind2.getGene(i);
+        }
+        int j=0;
+        for (int i = crossPoint; i <crossPoint+ind1.getNumGenes(); i++) {
+            ind1.setGene(i,child2[j]);
+            ind2.setGene(i,child1[j]);
+            j++;
+        }
+
     }
 
     @Override

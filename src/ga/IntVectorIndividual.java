@@ -1,10 +1,10 @@
 package ga;
 
-//import sun.reflect.generics.reflectiveObjects.NotImplementedException;
+
 
 import com.sun.security.auth.UnixNumericGroupPrincipal;
 
-import java.util.Random;
+
 
 public abstract class IntVectorIndividual<P extends Problem, I extends IntVectorIndividual> extends Individual<P, I> {
     //TODO this class might require the definition of additional methods and/or attributes

@@ -4,20 +4,33 @@ import ga.Individual;
 import ga.Problem;
 
 
+import java.util.HashMap;
+import java.util.Hashtable;
 import java.util.LinkedList;
 
 public class CatchProblemForGA implements Problem<CatchIndividual> {
     private LinkedList<Cell> cellsBoxes;
-    private LinkedList<Pair> pairs;
+    private HashMap<String, Integer> hashtable;
     private Cell cellCatch;
     private Cell door;
 
     public CatchProblemForGA(LinkedList<Cell> cellsBoxes,LinkedList<Pair> pairs,Cell cellCatch,Cell door) {
         this.cellsBoxes=cellsBoxes;
-        this.pairs=pairs;
         this.cellCatch=cellCatch;
         this.door=door;
+        hashtable=new HashMap<String,Integer>();
+        carregaHash(pairs);
 
+    }
+
+    private void carregaHash(LinkedList<Pair> pairs) {
+        for (int i = 0; i <pairs.size(); i++) {
+            Cell c1=pairs.get(i).getCell1();
+            Cell c2 = pairs.get(i).getCell2();
+            String s=""+c1.getLine()+""+c1.getColumn()+""+c2.getLine()+""+c2.getColumn();
+            hashtable.put(s,pairs.get(i).getValue());
+            //hashtable.put(c1.getLine()*1000+c1.getColumn()*100+c2.getLine()*10+c2.getColumn(),pairs.get(i).getValue())
+        }
     }
 
     @Override
@@ -39,12 +52,12 @@ public class CatchProblemForGA implements Problem<CatchIndividual> {
         this.cellsBoxes = cellsBoxes;
     }
 
-    public LinkedList<Pair> getPairs() {
-        return pairs;
+    public HashMap<String,Integer> getPairs() {
+        return hashtable;
     }
 
     public void setPairs(LinkedList<Pair> pairs) {
-        this.pairs = pairs;
+        carregaHash(pairs);
     }
 
     public Cell getCellCatch() {
