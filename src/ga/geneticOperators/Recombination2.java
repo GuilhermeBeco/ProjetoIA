@@ -15,20 +15,21 @@ public class Recombination2<I extends IntVectorIndividual, P extends Problem<I>>
 
     @Override
     public void recombine(I ind1, I ind2) {
-        int [] child1=new int[ind1.getNumGenes()/2];
-        int [] child2=new int[ind2.getNumGenes()/2];
-        int crossPoint= GeneticAlgorithm.random.nextInt(ind1.getNumGenes()/2);
-        for (int i = 0; i <crossPoint; i++) {
-            child1[i]=ind1.getGene(i);
-            child2[i]=ind2.getGene(i);
+        int[] child1=new int[ind1.getNumGenes()];
+        int[] child2=new int[ind2.getNumGenes()];
+        int crossPoint1=GeneticAlgorithm.random.nextInt(ind1.getNumGenes()/2);
+        int crossPoint2=GeneticAlgorithm.random.nextInt(ind2.getNumGenes()/2);
+        while (crossPoint2>=crossPoint1){
+            crossPoint2=GeneticAlgorithm.random.nextInt(ind2.getNumGenes()/2);
         }
-        int j=0;
-        for (int i = crossPoint; i <crossPoint+ind1.getNumGenes(); i++) {
-            ind1.setGene(i,child2[j]);
-            ind2.setGene(i,child1[j]);
-            j++;
+        for (int i = 0; i <crossPoint1; i++) {
+            child1[i]=0;
+            child2[i]=0;
         }
-
+        for (int i = crossPoint2+1; i <ind1.getNumGenes() ; i++) {
+            child1[i]=0;
+            child2[i]=0;
+        }
     }
 
     @Override
