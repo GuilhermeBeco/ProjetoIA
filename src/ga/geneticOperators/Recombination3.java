@@ -1,5 +1,6 @@
 package ga.geneticOperators;
 
+import ga.GeneticAlgorithm;
 import ga.IntVectorIndividual;
 import ga.Problem;
 
@@ -14,7 +15,7 @@ public class Recombination3<I extends IntVectorIndividual, P extends Problem<I>>
 
     @Override
     public void recombine(I ind1, I ind2) {
-        //TODO
+
     }
 
     @Override
