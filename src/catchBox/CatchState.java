@@ -13,7 +13,7 @@ import static java.lang.Math.abs;
 public class CatchState extends State implements Cloneable {
     private int catchLine;
     private int catchCol;
-
+    private int steps;
     protected int[][] matrix;
     private int goalLine;
     private int goalCol;
@@ -52,7 +52,7 @@ public class CatchState extends State implements Cloneable {
 
     public void executeAction(Action action) {
         action.execute(this);
-        // TODO
+        steps++;
         fireUpdatedEnvironment();
 
         // delete after implementing
@@ -158,7 +158,7 @@ public class CatchState extends State implements Cloneable {
     }
 
     public int getSteps() {
-       return 0;
+       return steps;
     }
 
     public int getSize() {
@@ -246,6 +246,6 @@ public class CatchState extends State implements Cloneable {
 
     //qual a aproach???
     public double distancia() {
-        return abs(this.getCatchLine() - this.goalLine )+ abs(this.getCatchCol() - this.getGoalCol());
+        return abs(this.getCatchLine() - goalLine )+ abs(this.getCatchCol() - goalCol);
     }
 }

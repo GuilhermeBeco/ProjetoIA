@@ -11,19 +11,21 @@ public class Mutation4<I extends IntVectorIndividual, P extends Problem<I>> exte
 
     @Override
     public void mutate(I ind) {
-        int amount=GeneticAlgorithm.random.nextInt(ind.getNumGenes()/2);
-        while((amount%2)!=0 && amount<0){
-            amount=GeneticAlgorithm.random.nextInt(ind.getNumGenes()/2);
-        }
-        int pos=GeneticAlgorithm.random.nextInt(ind.getNumGenes());
-        while((pos+amount)>ind.getNumGenes()) {
-            pos = GeneticAlgorithm.random.nextInt(ind.getNumGenes());
-        }
-        int split=amount/2;
-        for (int i = pos-1; i <pos+amount ; i++) {
-            int aux = ind.getGene(pos+split);
-            ind.setGene(pos+split, ind.getGene(pos));
-            ind.setGene(pos, aux);
+
+       int amount=GeneticAlgorithm.random.nextInt(ind.getNumGenes()/2);
+       while(amount==0)
+           amount=GeneticAlgorithm.random.nextInt(ind.getNumGenes()/2);
+
+        int i=0;
+        int j=ind.getNumGenes()-amount-1;
+        int auxFirst=0;
+        System.out.println(amount);
+        while(i<amount){
+            auxFirst=ind.getGene(i);
+            ind.setGene(i,ind.getGene(j));
+            ind.setGene(j,auxFirst);
+            i++;
+            j++;
 
         }
     }

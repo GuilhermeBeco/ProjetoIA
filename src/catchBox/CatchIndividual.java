@@ -40,7 +40,7 @@ public class CatchIndividual extends IntVectorIndividual<CatchProblemForGA, Catc
          if(hashtable.containsKey(s)){
              return hashtable.get(s);
          }
-         s=""+c2.getLine()+"-"+c2.getColumn()+"-"+c1.getLine()+"-"+c1.getColumn();
+         s=""+c2.getLine()+"-"+c2.getColumn()+"-"+c1.getLine()+"-"+c1.getColumn();;
         return hashtable.get(s);
     }
     public int[] getGenome() {
