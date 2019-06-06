@@ -27,7 +27,7 @@ public class CatchProblemForGA implements Problem<CatchIndividual> {
         for (int i = 0; i <pairs.size(); i++) {
             Cell c1=pairs.get(i).getCell1();
             Cell c2 = pairs.get(i).getCell2();
-            String s=""+c1.getLine()+""+c1.getColumn()+""+c2.getLine()+""+c2.getColumn();
+            String s=""+c1.getLine()+"-"+c1.getColumn()+"-"+c2.getLine()+"-"+c2.getColumn();
             hashtable.put(s,pairs.get(i).getValue());
             //hashtable.put(c1.getLine()*1000+c1.getColumn()*100+c2.getLine()*10+c2.getColumn(),pairs.get(i).getValue())
         }

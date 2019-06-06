@@ -5,11 +5,11 @@ import ga.IntVectorIndividual;
 import ga.Problem;
 
 
-public class Recombination3<I extends IntVectorIndividual, P extends Problem<I>> extends Recombination<I, P> {
+public class Recombination4<I extends IntVectorIndividual, P extends Problem<I>> extends Recombination<I, P> {
 
     //TODO this class might require the definition of additional methods and/or attributes
 
-    public Recombination3(double probability) {
+    public Recombination4(double probability) {
         super(probability);
     }
 
@@ -24,8 +24,8 @@ public class Recombination3<I extends IntVectorIndividual, P extends Problem<I>>
         int crossPoint1=GeneticAlgorithm.random.nextInt(ind1.getNumGenes()/2);
         int crossPoint2=GeneticAlgorithm.random.nextInt(ind2.getNumGenes());
 
-        System.out.println(crossPoint1);
-        System.out.println(crossPoint2);
+        while(crossPoint1==0)
+            crossPoint1=GeneticAlgorithm.random.nextInt(ind1.getNumGenes()/2);
         while (crossPoint2<=crossPoint1){
             crossPoint2=GeneticAlgorithm.random.nextInt(ind2.getNumGenes());
         }
@@ -83,14 +83,16 @@ public class Recombination3<I extends IntVectorIndividual, P extends Problem<I>>
         return false;
     }
     public int findFirstZero(int[] child,int cut2,int cut1){
-        for (int i = cut2; i <child.length ; i++) {
+        for (int i = child.length-1 ; i >cut2; i--) {
             if(child[i]==0)
                 return i;
         }
-        for (int i = 0; i <cut1 ; i++) {
-            if(child[i]==0)
-                return i;
-        }
+
+            for (int i = cut1 - 1; i >= 0; i--) {
+                if (child[i] == 0)
+                    return i;
+            }
+
         return -1;
     }
 
@@ -98,5 +100,5 @@ public class Recombination3<I extends IntVectorIndividual, P extends Problem<I>>
     public String toString(){
         //TODO
         throw new UnsupportedOperationException();
-    }    
+    }
 }

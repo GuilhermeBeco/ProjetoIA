@@ -36,11 +36,11 @@ public class CatchIndividual extends IntVectorIndividual<CatchProblemForGA, Catc
     public double computeFitnessAux(Cell c1,Cell c2){
         HashMap<String,Integer> hashtable=problem.getPairs();
         double ret=0;
-        String s=""+c1.getLine()+""+c1.getColumn()+""+c2.getLine()+""+c2.getColumn();
+        String s=""+c1.getLine()+"-"+c1.getColumn()+"-"+c2.getLine()+"-"+c2.getColumn();
          if(hashtable.containsKey(s)){
              return hashtable.get(s);
          }
-         s=""+c2.getLine()+""+c2.getColumn()+""+c1.getLine()+""+c1.getColumn();
+         s=""+c2.getLine()+"-"+c2.getColumn()+"-"+c1.getLine()+"-"+c1.getColumn();
         return hashtable.get(s);
     }
     public int[] getGenome() {
