@@ -2,7 +2,7 @@ Runs: 50
 
 Population size: 100, 200, 300, 400, 500, 600
 
-Max generations: 100, 500, 1000, 1500
+Max generations: 1000
 
 //--------------------------------
 
