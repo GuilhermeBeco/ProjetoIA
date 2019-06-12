@@ -4,6 +4,15 @@ public abstract class Individual<P extends Problem, I extends Individual> implem
 
     protected double fitness;
     protected P problem;
+    protected double tempo;
+
+    public double getTempo() {
+        return tempo;
+    }
+
+    public void setTempo(double tempo) {
+        this.tempo = tempo;
+    }
 
     public Individual(P problem) {
         this.problem = problem;
@@ -12,6 +21,7 @@ public abstract class Individual<P extends Problem, I extends Individual> implem
     public Individual(Individual<P, I> original) {
         this.problem = original.problem;
         this.fitness = original.fitness;
+        this.tempo=original.tempo;
     }
 
     public abstract double computeFitness();
