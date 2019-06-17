@@ -1,0 +1,68 @@
+#
+# There is insufficient memory for the Java Runtime Environment to continue.
+# Native memory allocation (mmap) failed to map 684720128 bytes for committing reserved memory.
+# Possible reasons:
+#   The system is out of physical RAM or swap space
+#   The process is running with CompressedOops enabled, and the Java Heap may be blocking the growth of the native heap
+# Possible solutions:
+#   Reduce memory load on the system
+#   Increase physical memory or swap space
+#   Check if swap backing store is full
+#   Decrease Java heap size (-Xmx/-Xms)
+#   Decrease number of Java threads
+#   Decrease Java thread stack sizes (-Xss)
+#   Set larger code cache with -XX:ReservedCodeCacheSize=
+#   JVM is running with Unscaled Compressed Oops mode in which the Java heap is
+#     placed in the first 4GB address space. The Java Heap base address is the
+#     maximum limit for the native heap growth. Please use -XX:HeapBaseMinAddress
+#     to set the Java Heap base and to place the Java Heap above 4GB virtual address.
+# This output file may be truncated or incomplete.
+#
+#  Out of Memory Error (os_linux.cpp:2660), pid=4004, tid=4018
+#
+# JRE version: OpenJDK Runtime Environment (12.0.1+12) (build 12.0.1+12-Ubuntu-1)
+# Java VM: OpenJDK 64-Bit Server VM (12.0.1+12-Ubuntu-1, mixed mode, sharing, tiered, compressed oops, g1 gc, linux-amd64)
+# Core dump will be written. Default location: Core dumps may be processed with "/usr/share/apport/apport %p %s %c %d %P" (or dumping to /home/beco/Desktop/ProjetoIA/core.4004)
+#
+
+---------------  S U M M A R Y ------------
+
+Command Line: -javaagent:/snap/intellij-idea-ultimate/148/lib/idea_rt.jar=39743:/snap/intellij-idea-ultimate/148/bin -Dfile.encoding=UTF-8 gui.Main
+
+Host: AMD Ryzen 5 2600 Six-Core Processor, 12 cores, 7G, Pop!_OS 19.04
+Time: Mon Jun 17 10:09:56 2019 WEST elapsed time: 44821 seconds (0d 12h 27m 1s)
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x00007f80cc166800):  VMThread "VM Thread" [stack: 0x00007f80b0559000,0x00007f80b0659000] [id=4018]
+
+Stack: [0x00007f80b0559000,0x00007f80b0659000],  sp=0x00007f80b0657000,  free space=1016k
+Native frames: (J=compiled Java code, A=aot compiled Java code, j=interpreted, Vv=VM code, C=native code)
+V  [libjvm.so+0xea737a]
+V  [libjvm.so+0xea7f1b]
+V  [libjvm.so+0x648365]
+V  [libjvm.so+0xb86748]
+
+[timeout occurred during error reporting in step "printing native stack"] after 32 s.
+VM_Operation (0x00007f80a0706220): G1CollectForAllocation, mode: safepoint, requested by thread 0x00007f804c545000
+
+
+---------------  P R O C E S S  ---------------
+
+Threads class SMR info:
+_java_thread_list=0x00007f803808f010, length=17, elements={
+0x00007f80cc169800, 0x00007f80cc16b800, 0x00007f80cc171000, 0x00007f80cc173000,
+0x00007f80cc175000, 0x00007f80cc177000, 0x00007f80cc185000, 0x00007f80cc239000,
+0x00007f80cc23a000, 0x00007f80cc345800, 0x00007f80cc348000, 0x00007f80cc34d000,
+0x00007f80cc34f000, 0x00007f80cc012800, 0x00007f804c32b800, 0x00007f8084001000,
+0x00007f804c545000
+}
+
+Java Threads: ( => current thread )
+  0x00007f80cc169800 JavaThread "Reference Handler" daemon [_thread_blocked, id=4020, stack(0x00007f80b0456000,0x00007f80b0557000)]
+  0x00007f80cc16b800 JavaThread "Finalizer" daemon [_thread_blocked, id=4022, stack(0x00007f80b0355000,0x00007f80b0456000)]
+  0x00007f80cc171000 JavaThread "Signal Dispatcher" daemon [_thread_blocked, id=4023, stack(0x00007f80b0254000,0x00007f80b0355000)]
+  0x00007f80cc173000 JavaThread "C2 CompilerThread0" daemon [_thread_blocked, id=4025, stack(0x00007f80b0153000,0x00007f80b0254000)]
+  0x00007f80cc175000 JavaThread "C1 CompilerThread0" daemon [_thread_blocked, id=4027, stack(0x00007f80b0052000,0x00007f80b0153000)]
+  0x00007f80cc177000 JavaThread "Sweeper thread" daemon [_thread_blocked, id=4028, stack(0x00007f80a0809000,0x00007f80a090a000)]
+  0x00007f80cc185000 JavaThread "Common-Cleaner"

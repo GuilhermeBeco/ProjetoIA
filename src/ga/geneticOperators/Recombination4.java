@@ -97,8 +97,7 @@ public class Recombination4<I extends IntVectorIndividual, P extends Problem<I>>
     }
 
     @Override
-    public String toString(){
-        //TODO
-        throw new UnsupportedOperationException();
+    public String toString() {
+        return "Recombination 4";
     }
 }
